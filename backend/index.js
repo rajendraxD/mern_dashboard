@@ -18,8 +18,6 @@ app.use(bodyParser.json());
 // app.use(httpMethodHandler());
 app.use(logger);
 
-//Call mongodb database
-connectDb();
 
 //Routes
 app.get("/", (req, res) => {
@@ -33,5 +31,7 @@ app.use(unknownRouterHandler);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
+  //Call mongodb database
+  connectDb();
   console.log(`🟢 Server is running... [Port:${PORT}]`);
 });
