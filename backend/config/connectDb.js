@@ -7,6 +7,9 @@ const connectDb = async () => {
     // Check internet first
     await dns.lookup("google.com");
 
+    // If we already have a connection, don't create a new one
+    if (mongoose.connection.readyState >= 1) return;
+    
     const conn = await mongoose.connect(process.env.MONGODB_URI, {
       //   useNewUrlParser: true,
       //   useUnifiedTopology: true,
