@@ -9,11 +9,11 @@ const connectDb = async () => {
 
     // If we already have a connection, don't create a new one
     if (mongoose.connection.readyState >= 1) return;
-
+    
     const conn = await mongoose.connect(process.env.MONGODB_URI, {
       //   useNewUrlParser: true,
       //   useUnifiedTopology: true,
-      serverSelectionTimeoutMS: 5000,
+      // serverSelectionTimeoutMS: 5000,
     });
     const { host, port, name } = conn.connection;
     console.log(
@@ -34,8 +34,7 @@ const connectDb = async () => {
       }
     } else {
       console.error("🔴 MongoDB connection failed:", error);
-      // process.exit(1);
-      throw error;
+      process.exit(1);
     }
     setTimeout(connectDb, 5000);
   }
