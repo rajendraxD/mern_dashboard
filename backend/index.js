@@ -24,10 +24,11 @@ app.get("/", (req, res) => {
 });
 app.use("/users", userRouter);
 
+//Error Handling Middleware
 app.use(apiErrorHandle);
 app.use(unknownRouterHandler);
-const PORT = process.env.PORT || 5000;
 
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   //Call mongodb database
   connectDb();
